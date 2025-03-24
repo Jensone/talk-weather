@@ -35,7 +35,7 @@ jobs:
                 -X POST \
                 -d '{
                 "contents": [{
-                    "parts":[{"text": "'$prompt'"}],
+                    "parts":[{"text": "'${prompt//\"/\\\"}'"}],
                     }]
                 }')
 
