@@ -29,14 +29,12 @@ jobs:
               run: |
                 wttr=$(curl -s https://wttr.in/Paris?format=3)
                 prompt="Résume la météo à Paris à partir de la réponse suivante : $wttr"
-                
-                reponse=$(curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${{ secrets.GEMINI_KEY }}" \
-                -H 'Content-Type: application/json' \
-                -X POST \
-                -d '{
-                "contents": [{
-                    "parts":[{"text": "'${prompt//\"/\\\"}'"}],
-                    }]
-                }')
+                echo $prompt > prompt.txt
 
-                echo "$reponse"
+            - name: OpenAI
+              uses: Just-Moh-it/openai@v0.0.1
+              with:
+                openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+                openai-mode: "completion"
+                openai-params: '{"prompt":"Repeat after me, Hello World: }}", "model": "text-davinci-003"}'
+              id: openai
