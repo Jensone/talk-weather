@@ -28,13 +28,4 @@ jobs:
             - name: Get the weather
               run: |
                 wttr=$(curl -s https://wttr.in/Paris?format=3)
-                prompt="Résume la météo à Paris à partir de la réponse suivante : $wttr"
-                echo $prompt > prompt.txt
-
-            - name: OpenAI
-              uses: Just-Moh-it/openai@v0.0.1
-              with:
-                openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-                openai-mode: "completion"
-                openai-params: '{"prompt":"Repeat after me, Hello World: }}", "model": "text-davinci-003"}'
-              id: openai
+                echo $wttr
