@@ -24,8 +24,11 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
+            - name: Install jq
+              run: sudo apt-get update && sudo apt-get install -y jq
+
             # Action de l'API de météo
-            - name: Get weather data and ask Gemini
+            - name: Get weather
               env:
                     GEMINI_API: ${{ secrets.GEMINI_KEY }}
               run: |
