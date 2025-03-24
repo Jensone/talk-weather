@@ -28,7 +28,7 @@ jobs:
             - name: Get the weather
               run: |
                 wttr=$(curl -s https://wttr.in/Paris)
-                prompt="Résume la météo à Paris à partir de la réponse suivante : $wttr"
+                prompt="Résume la météo à Paris à partir de la réponse suivante : 24deg"
                 
                 reponse=$(curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${{ secrets.GEMINI_KEY }}" \
                 -H 'Content-Type: application/json' \
