@@ -2,7 +2,7 @@ name: Hello Action
 on:
   push:
     branches: [ "main", "dev" ]
-    paths: [ "src/**", "Dockerfile" ]
+    paths-ignore: [ "src/**", "Dockerfile" ]
 jobs:
   hello:
     runs-on: ubuntu-latest
