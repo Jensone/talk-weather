@@ -1,7 +1,7 @@
 name: Hello Action
 on:
   push:
-    branches: [ "main", "dev" ]
+    branches: [ "prod" ]
     paths-ignore: [ "src/**", "Dockerfile", "README.md" ]
 jobs:
   hello:
