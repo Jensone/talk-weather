@@ -6,7 +6,7 @@ on:
     # au push sur main
     push:
         branches:
-            - main
+            - prod
     # Clique sur le bouton 
     workflow_dispatch:
     # Chaque 2 minutes
