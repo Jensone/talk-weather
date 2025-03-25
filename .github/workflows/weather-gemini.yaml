@@ -4,14 +4,7 @@ name: Talk Weather wtih Gemini
 # Déclencheur de l'action
 on:
     # au push sur main
-    push:
-        branches:
-            - main
-    # Clique sur le bouton 
-    workflow_dispatch:
-    # Chaque 2 minutes
-    schedule:
-        - cron: "*/2 * * * *"
+    issues:
 
 # Les tâches à exécuter
 jobs:
