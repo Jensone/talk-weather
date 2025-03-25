@@ -2,7 +2,7 @@ name: Hello Action
 on:
   push:
     branches: [ "main", "dev" ]
-    paths-ignore: [ "src/**", "Dockerfile" ]
+    paths-ignore: [ "src/**", "Dockerfile", "README.md" ]
 jobs:
   hello:
     runs-on: ubuntu-latest
