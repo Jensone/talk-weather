@@ -26,6 +26,9 @@ jobs:
 
             - name: read my file
               run: cat README.md
+
+            - name: test npm
+              run: npm init -y
             
             # Action de l'API de météo
             - name: Get weather on Linux
