@@ -7,7 +7,7 @@ jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello ${{ github.author }}" > entrypoint.sh
+      - run: echo "Hello Alain" > entrypoint.sh
       - uses: actions/checkout@v4
       - uses: jensone/hello-action@v1.4
         with:
