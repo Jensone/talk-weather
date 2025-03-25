@@ -1,0 +1,52 @@
+# Nom du workflow
+name: Talk Weather wtih Gemini
+
+# Déclencheur de l'action
+on:
+    # au push sur main
+    push:
+        branches:
+            - main
+    # Clique sur le bouton 
+    workflow_dispatch:
+    # Chaque 2 minutes
+    schedule:
+        - cron: "*/2 * * * *"
+
+# Les tâches à exécuter
+jobs:
+    # Nom de la tâche
+    ask-weather-linux:
+        # OS
+        runs-on: ubuntu-latest
+        # Environnement
+        environment: WEATHER
+        env:
+          GEMINI_KEY: ${{ secrets.GEMINI_KEY }}
+        # Étapes
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Install jq
+              run: apt-get update && apt-get install -y jq
+            
+            # Action de l'API de météo
+            - name: Get weather on Linux
+              run: |
+                wttr=$(curl -s https://wttr.in/Paris?format=3 )
+                prompt="Résumé de la météo à Paris : $wttr"
+
+                payload=$(jq -n --arg text "$PROMPT" '{
+                  contents: [{
+                    parts: [{ text: $text }]
+                  }]
+                }')
+
+                response=$(curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$GEMINI_KEY" \
+                -H "Content-Type: application/json" \
+                -X POST \
+                -d "$payload")
+
+                echo $response
+
