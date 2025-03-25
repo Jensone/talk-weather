@@ -8,4 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: cat ${{ github }}
+      - run: echo "${{ toJson(github) }}" > github_output.txt
+      - name: Sauvegarder le fichier de sortie
+        uses: actions/upload-artifact@v2
+        with:
+            name: github-output
+            path: github_output.txt
+    
